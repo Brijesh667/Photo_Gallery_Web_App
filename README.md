@@ -1,8 +1,32 @@
-# React + Vite
+# Photo Gallery Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive photo gallery application built with React, Vite, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Tech Stack
+- React
+- Vite
+- Tailwind CSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- Fetches photos from Picsum API (`https://picsum.photos/v2/list?limit=30`)
+- Loading spinner and error handling state
+- Responsive grid (1 column on mobile, 2 on tablet, 4 on desktop)
+- Real-time search filter by author name
+- Favourites management persisted in localStorage
+- Favourites counter and toggle filter to view only favourited photos
+
+## How to Run
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Hooks Used
+- `useFetchPhotos`: Custom hook to fetch photo data on component mount and manage loading/error states.
+- `useReducer`: Manages the list of favourite photo IDs with pure state transitions.
+- `useCallback`: Memoizes the search input handler passed to the memoized SearchBar.
+- `useMemo`: Computes filtered photos in memory based on search query and favourites filter.
