@@ -9,6 +9,7 @@ function Gallery() {
   const { photos, loading, error } = useFetchPhotos()
   const [favourites, dispatch] = useReducer(favouritesReducer, [], getInitialFavourites)
   const [query, setQuery] = useState('')
+  const [showFavourites, setShowFavourites] = useState(false)
 
   useEffect(() => {
     localStorage.setItem('favourites', JSON.stringify(favourites))
@@ -19,10 +20,14 @@ function Gallery() {
   }, [])
 
   const filteredPhotos = useMemo(() => {
-    return photos.filter((photo) =>
-      photo.author.toLowerCase().includes(query.trim().toLowerCase())
-    )
-  }, [photos, query])
+    return photos.filter((photo) => {
+      const matchesAuthor = photo.author
+        .toLowerCase()
+        .includes(query.trim().toLowerCase())
+      const matchesFavourite = !showFavourites || favourites.includes(photo.id)
+      return matchesAuthor && matchesFavourite
+    })
+  }, [photos, query, showFavourites, favourites])
 
   if (loading) {
     return <Spinner />
@@ -38,8 +43,27 @@ function Gallery() {
 
   return (
     <div>
-      <div className="mb-8">
-        <SearchBar value={query} onChange={handleSearch} />
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+        <div className="w-full md:w-auto flex-1 max-w-md">
+          <SearchBar value={query} onChange={handleSearch} />
+        </div>
+        <div className="flex items-center justify-center md:justify-end gap-4">
+          <span className="text-sm font-medium text-gray-700">
+            Favourites: {favourites.length}
+          </span>
+          <button
+            type="button"
+            onClick={() => setShowFavourites((prev) => !prev)}
+            aria-pressed={showFavourites}
+            className={`px-4 py-2 text-sm font-medium rounded-lg cursor-pointer transition-colors ${
+              showFavourites
+                ? 'bg-blue-600 text-white hover:bg-blue-700'
+                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+            }`}
+          >
+            {showFavourites ? 'Show all' : 'Show favourites'}
+          </button>
+        </div>
       </div>
 
       {filteredPhotos.length === 0 ? (
