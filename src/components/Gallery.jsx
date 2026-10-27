@@ -31,9 +31,9 @@ function Gallery() {
 
   return (
     <div>
-      <header className="sticky top-0 z-10 bg-white border-b border-gray-200 shadow-sm py-4 mb-8">
+      <header className="sticky top-0 z-20 bg-slate-950/70 backdrop-blur-md border-b border-white/10 py-4 mb-8">
         <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-3xl font-bold text-gray-800 text-center tracking-tight mb-4">
+          <h1 className="text-3xl font-bold bg-linear-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent text-center tracking-tight mb-4">
             Photo Gallery
           </h1>
           {!loading && !error && (
@@ -67,13 +67,13 @@ function Gallery() {
         {loading && <Spinner />}
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-center">
+          <div className="bg-red-500/10 border border-red-500/30 text-red-300 px-4 py-3 rounded-lg text-center">
             {error}
           </div>
         )}
 
         {!loading && !error && filteredPhotos.length === 0 && (
-          <p className="text-center text-gray-500 py-12">No photos found</p>
+          <p className="text-center text-slate-400 py-12">No photos found</p>
         )}
 
         {!loading && !error && filteredPhotos.length > 0 && (
