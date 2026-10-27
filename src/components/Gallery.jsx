@@ -1,18 +1,33 @@
 import useFetchPhotos from '../hooks/useFetchPhotos'
+import PhotoCard from './PhotoCard'
+import Spinner from './Spinner'
 
 function Gallery() {
   const { photos, loading, error } = useFetchPhotos()
 
   if (loading) {
-    return <p className="text-gray-500">Loading...</p>
+    return <Spinner />
   }
 
   if (error) {
-    return <p className="text-red-500">{error}</p>
+    return (
+      <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-center">
+        {error}
+      </div>
+    )
   }
 
   return (
-    <p className="text-gray-700">Photos loaded: {photos.length}</p>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {photos.map((photo) => (
+        <PhotoCard
+          key={photo.id}
+          photo={photo}
+          isFavourite={false}
+          onToggle={() => {}}
+        />
+      ))}
+    </div>
   )
 }
 
