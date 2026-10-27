@@ -18,7 +18,7 @@ function useFetchPhotos() {
         if (isMounted) {
           setPhotos(data)
         }
-      } catch (err) {
+      } catch {
         if (isMounted) {
           setError('Failed to load photos')
         }
