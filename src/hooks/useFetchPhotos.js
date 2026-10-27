@@ -1,0 +1,1 @@
+// useFetchPhotos hook placeholder
