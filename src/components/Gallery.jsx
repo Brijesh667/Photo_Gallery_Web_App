@@ -41,21 +41,25 @@ function Gallery() {
               <div className="w-full md:w-auto flex-1 max-w-md">
                 <SearchBar value={query} onChange={handleSearch} />
               </div>
-              <div className="flex items-center justify-center md:justify-end gap-4">
-                <span className="text-sm font-medium text-gray-700">
+              <div className="flex items-center justify-center md:justify-end gap-3 flex-wrap">
+                <span className="flex items-center gap-1.5 bg-slate-800/80 border border-slate-700 rounded-full px-3 py-1 text-sm text-slate-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-pink-500">
+                    <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+                  </svg>
                   Favourites: {favourites.length}
                 </span>
                 <button
                   type="button"
                   onClick={() => setShowFavourites((prev) => !prev)}
                   aria-pressed={showFavourites}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg cursor-pointer transition-colors ${
+                  className={`group relative overflow-hidden rounded-xl px-4 py-2 font-medium transition-all duration-300 hover:-translate-y-0.5 active:scale-95 cursor-pointer text-sm ${
                     showFavourites
-                      ? 'bg-blue-600 text-white hover:bg-blue-700'
-                      : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                      ? 'bg-linear-to-r from-pink-500 to-purple-600 text-white shadow-[0_0_20px_rgba(236,72,153,0.5)]'
+                      : 'bg-slate-800 border border-slate-700 text-slate-200 hover:border-purple-500'
                   }`}
                 >
-                  {showFavourites ? 'Show all' : 'Show favourites'}
+                  <span className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/30 to-transparent group-hover:translate-x-full transition-transform duration-700" />
+                  <span className="relative">{showFavourites ? 'Show all' : 'Show favourites'}</span>
                 </button>
               </div>
             </div>
