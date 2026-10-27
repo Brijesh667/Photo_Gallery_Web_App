@@ -31,8 +31,8 @@ function Gallery() {
 
   return (
     <div>
-      <header className="sticky top-0 z-20 bg-slate-950/70 backdrop-blur-md border-b border-white/10 py-4 mb-8">
-        <div className="max-w-7xl mx-auto px-4">
+      <header className="sticky top-0 z-30 bg-slate-950/90 backdrop-blur-md border-b border-white/10 py-4 mb-8">
+        <div className="max-w-7xl mx-auto px-4 ">
           <h1 className="text-3xl font-bold bg-linear-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent text-center tracking-tight mb-4">
             Photo Gallery
           </h1>
@@ -64,7 +64,7 @@ function Gallery() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 pb-8">
+      <main className="max-w-7xl mx-auto px-4 pb-8 ">
         {loading && <Spinner />}
 
         {error && (
