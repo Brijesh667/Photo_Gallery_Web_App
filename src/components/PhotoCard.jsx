@@ -1,12 +1,14 @@
 function PhotoCard({ photo, isFavourite, onToggle }) {
   return (
-    <div className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col">
-      <img
-        src={`https://picsum.photos/id/${photo.id}/400/300`}
-        alt={`Photo by ${photo.author}`}
-        loading="lazy"
-        className="w-full h-48 object-cover"
-      />
+    <div className="group bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col">
+      <div className="overflow-hidden">
+        <img
+          src={`https://picsum.photos/id/${photo.id}/400/300`}
+          alt={`Photo by ${photo.author}`}
+          loading="lazy"
+          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
       <div className="p-4 flex items-center justify-between gap-2">
         <span className="text-sm font-medium text-gray-800 truncate" title={photo.author}>
           {photo.author}
@@ -15,7 +17,7 @@ function PhotoCard({ photo, isFavourite, onToggle }) {
           type="button"
           onClick={onToggle}
           aria-label={isFavourite ? 'Remove from favourites' : 'Add to favourites'}
-          className="cursor-pointer p-1"
+          className="cursor-pointer p-1 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 active:scale-90 transition-transform"
         >
           {isFavourite ? (
             <svg
