@@ -82,10 +82,11 @@ function Gallery() {
 
         {!loading && !error && filteredPhotos.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filteredPhotos.map((photo) => (
+            {filteredPhotos.map((photo, index) => (
               <PhotoCard
                 key={photo.id}
                 photo={photo}
+                index={index}
                 isFavourite={favourites.includes(photo.id)}
                 onToggle={() => dispatch({ type: 'TOGGLE_FAVOURITE', id: photo.id })}
               />
