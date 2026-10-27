@@ -13,8 +13,10 @@ export function favouritesReducer(state, action) {
 export function getInitialFavourites() {
   try {
     const saved = localStorage.getItem('favourites')
-    return saved ? JSON.parse(saved) : []
-  } catch (err) {
+    if (!saved) return []
+    const parsed = JSON.parse(saved)
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
     return []
   }
 }
